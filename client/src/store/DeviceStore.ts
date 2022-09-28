@@ -1,14 +1,19 @@
 import { makeAutoObservable } from 'mobx';
 
+type Type = { id: number; name: string };
+
 export class DeviceStore {
-  private _types: {}[];
+  private _types: Type[];
+  private _selectedType: Type;
   private _brands: {}[];
   private _devices: {}[];
 
   constructor() {
     this._types = [
-      { id: 1, name: 'Refriges' },
+      { id: 1, name: 'Refrigerators' },
       { id: 2, name: 'Smartphones' },
+      { id: 3, name: 'Laptops' },
+      { id: 4, name: 'TVs' },
     ];
     this._brands = [
       { id: 1, name: 'Samsung' },
@@ -30,9 +35,10 @@ export class DeviceStore {
         img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
       },
     ];
+    this._selectedType = {} as Type;
     makeAutoObservable(this);
   }
-  setTypes(types: {}[]) {
+  setTypes(types: Type[]) {
     this._types = types;
   }
   setBrands(brands: {}[]) {
@@ -40,6 +46,9 @@ export class DeviceStore {
   }
   setDevices(devices: {}[]) {
     this._devices = devices;
+  }
+  setSelectedType(type: Type) {
+    this._selectedType = type;
   }
 
   get types() {
@@ -50,5 +59,8 @@ export class DeviceStore {
   }
   get devices() {
     return this._devices;
+  }
+  get selectedType() {
+    return this._selectedType;
   }
 }
