@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { TypeBar } from '../components';
+import { BrandBar, TypeBar } from '../components';
 
 export const ShopPage: FC = () => {
   return (
@@ -9,7 +9,9 @@ export const ShopPage: FC = () => {
         <Col md={3}>
           <TypeBar />
         </Col>
-        <Col md={9}>fgh</Col>
+        <Col md={9}>
+          <BrandBar />
+        </Col>
       </Row>
     </Container>
   );

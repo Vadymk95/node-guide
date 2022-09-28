@@ -1,11 +1,13 @@
 import { makeAutoObservable } from 'mobx';
 
 type Type = { id: number; name: string };
+type Brand = { id: number; name: string };
 
 export class DeviceStore {
   private _types: Type[];
   private _selectedType: Type;
-  private _brands: {}[];
+  private _selectedBrand: Brand;
+  private _brands: Brand[];
   private _devices: {}[];
 
   constructor() {
@@ -18,6 +20,8 @@ export class DeviceStore {
     this._brands = [
       { id: 1, name: 'Samsung' },
       { id: 2, name: 'Apple' },
+      { id: 3, name: 'Lenovo' },
+      { id: 4, name: 'Sony' },
     ];
     this._devices = [
       {
@@ -36,12 +40,13 @@ export class DeviceStore {
       },
     ];
     this._selectedType = {} as Type;
+    this._selectedBrand = {} as Brand;
     makeAutoObservable(this);
   }
   setTypes(types: Type[]) {
     this._types = types;
   }
-  setBrands(brands: {}[]) {
+  setBrands(brands: Brand[]) {
     this._brands = brands;
   }
   setDevices(devices: {}[]) {
@@ -49,6 +54,9 @@ export class DeviceStore {
   }
   setSelectedType(type: Type) {
     this._selectedType = type;
+  }
+  setSelectedBrand(brand: Brand) {
+    this._selectedBrand = brand;
   }
 
   get types() {
@@ -62,5 +70,8 @@ export class DeviceStore {
   }
   get selectedType() {
     return this._selectedType;
+  }
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }
