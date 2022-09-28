@@ -2,13 +2,20 @@ import { makeAutoObservable } from 'mobx';
 
 type Type = { id: number; name: string };
 type Brand = { id: number; name: string };
+export type Device = {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  rating: number;
+};
 
 export class DeviceStore {
   private _types: Type[];
   private _selectedType: Type;
   private _selectedBrand: Brand;
   private _brands: Brand[];
-  private _devices: {}[];
+  private _devices: Device[];
 
   constructor() {
     this._types = [
@@ -35,7 +42,28 @@ export class DeviceStore {
         id: 2,
         name: 'Iphone 14 pro',
         price: 25000,
+        rating: 4,
+        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
+      },
+      {
+        id: 3,
+        name: 'Xiaomi 11t',
+        price: 22000,
         rating: 5,
+        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
+      },
+      {
+        id: 4,
+        name: 'HTC Ultra',
+        price: 24000,
+        rating: 4,
+        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
+      },
+      {
+        id: 5,
+        name: 'Sony Razor',
+        price: 27000,
+        rating: 3,
         img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
       },
     ];
@@ -49,7 +77,7 @@ export class DeviceStore {
   setBrands(brands: Brand[]) {
     this._brands = brands;
   }
-  setDevices(devices: {}[]) {
+  setDevices(devices: Device[]) {
     this._devices = devices;
   }
   setSelectedType(type: Type) {
