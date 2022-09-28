@@ -8,6 +8,7 @@ import {
   DevicePage,
   ErrorPage,
 } from '../pages';
+import { Navigate } from 'react-router-dom';
 
 type RouteType = {
   path: string;
@@ -52,6 +53,6 @@ export const publicRoutes: RouteType[] = [
   },
   {
     path: EnumRoutes.ERROR_ROUTE,
-    element: <ErrorPage />,
+    element: <Navigate to={EnumRoutes.SHOP_ROUTE} replace />,
   },
 ];
