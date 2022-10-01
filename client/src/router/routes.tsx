@@ -25,8 +25,8 @@ export const protectedRoutes: RouteType[] = [
     element: <BasketPage />,
   },
   {
-    path: EnumRoutes.ERROR_ROUTE,
-    element: <ErrorPage />,
+    path: EnumRoutes.SHOP_ROUTE,
+    element: <ShopPage />,
   },
 ];
 
@@ -42,10 +42,6 @@ export const publicRoutes: RouteType[] = [
   {
     path: EnumRoutes.REGISTRATION_ROUTE,
     element: <AuthPage />,
-  },
-  {
-    path: EnumRoutes.SHOP_ROUTE,
-    element: <ShopPage />,
   },
   {
     path: EnumRoutes.DEVICE_ROUTE + '/:id',

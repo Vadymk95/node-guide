@@ -8,11 +8,12 @@ import { EnumRoutes } from '../router/EnumRoutes';
 export const NavBar: FC = observer(() => {
   const navigate = useNavigate();
   const { user } = useContext(Context);
-  const handleAuth = () => user.setIsAuth(true);
+  const handleAuth = () => navigate(EnumRoutes.LOGIN_ROUTE);
   const handleAdminRoute = () => navigate(EnumRoutes.ADMIN_ROUTE);
   const handleLogout = () => {
     navigate(EnumRoutes.LOGIN_ROUTE);
     user.setIsAuth(false);
+    user.setUser({});
   };
 
   return (

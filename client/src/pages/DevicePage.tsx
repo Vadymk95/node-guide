@@ -1,22 +1,18 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Container, Col, Image, Row, Card, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { fetchOneDevice } from '../http/deviceApi';
+import { Device } from '../store/DeviceStore';
 import star from './../assets/star.png';
 
 export const DevicePage: FC = () => {
-  const device = {
-    id: 1,
-    name: 'POCO m4 pro 5g',
-    price: 22000,
-    rating: 5,
-    img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-  };
-  const description = [
-    { id: 1, title: 'RAM', description: '8 gb' },
-    { id: 2, title: 'Camera', description: '16 mp' },
-    { id: 3, title: 'Processor', description: 'Asimut' },
-    { id: 4, title: 'Amount of Cores', description: '4' },
-    { id: 5, title: 'Accumulator', description: '5200' },
-  ];
+  const [device, setDevice] = useState({} as Device);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchOneDevice(id).then((data: any) => setDevice(data));
+  }, [])
+
   return (
     <Container className="mt-3">
       <Row>
@@ -57,12 +53,12 @@ export const DevicePage: FC = () => {
       </Row>
       <Row className="d-flex flex-column mt-3">
         <h1>Features</h1>
-        {description.map((info) => (
+        {device.info!.map((info: any) => (
           <Row
             key={info.id}
             className="border"
             style={{
-              backgroundColor: info.id % 2 === 0 ? 'lightgray': 'transparent',
+              backgroundColor: info.id % 2 === 0 ? 'lightgray' : 'transparent',
               padding: 10,
             }}
           >

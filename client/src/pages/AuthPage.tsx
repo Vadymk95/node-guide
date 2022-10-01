@@ -1,11 +1,14 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useState, useContext } from 'react';
 import { Container, Form, Card, Button } from 'react-bootstrap';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { EnumRoutes } from '../router/EnumRoutes';
 import { login, registration } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
+import { Context } from '../main';
 
 export const AuthPage: FC = observer(() => {
+  const navigate = useNavigate();
+  const { user } = useContext(Context);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const location = useLocation();
@@ -16,11 +19,19 @@ export const AuthPage: FC = observer(() => {
     setPassword(e.target.value);
 
   const handleClick = async () => {
-    if (isLogin) {
-      const response = await login(email, password);
-      return;
+    try {
+      let data;
+      if (isLogin) {
+        data = await login(email, password);
+      } else {
+        data = await registration(email, password);
+      }
+      user.setUser(data);
+      user.setIsAuth(true);
+      navigate(EnumRoutes.SHOP_ROUTE);
+    } catch (e) {
+      alert((e as Error).message);
     }
-    const response = await registration(email, password);
   };
   return (
     <Container

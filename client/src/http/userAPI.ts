@@ -11,6 +11,7 @@ export const registration = async (
     password,
     role: 'ADMIN',
   });
+  localStorage.setItem('token', data);
   return jwt_decode(data);
 };
 
@@ -22,10 +23,12 @@ export const login = async (
     email,
     password,
   });
+  localStorage.setItem('token', data);
   return jwt_decode(data);
 };
 
 export const check = async (): Promise<AxiosResponse> => {
-  const response = await $host.post('api/user/auth');
-  return response;
+  const { data } = await $authHost.get('api/user/auth');
+  localStorage.setItem('token', data);
+  return jwt_decode(data);
 };

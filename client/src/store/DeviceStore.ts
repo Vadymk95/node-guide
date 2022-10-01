@@ -8,6 +8,7 @@ export type Device = {
   price: number;
   img: string;
   rating: number;
+  info?: string[];
 };
 
 export class DeviceStore {
@@ -18,55 +19,9 @@ export class DeviceStore {
   private _devices: Device[];
 
   constructor() {
-    this._types = [
-      { id: 1, name: 'Refrigerators' },
-      { id: 2, name: 'Smartphones' },
-      { id: 3, name: 'Laptops' },
-      { id: 4, name: 'TVs' },
-    ];
-    this._brands = [
-      { id: 1, name: 'Samsung' },
-      { id: 2, name: 'Apple' },
-      { id: 3, name: 'Lenovo' },
-      { id: 4, name: 'Sony' },
-    ];
-    this._devices = [
-      {
-        id: 1,
-        name: 'POCO m4 pro 5g',
-        price: 22000,
-        rating: 5,
-        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-      },
-      {
-        id: 2,
-        name: 'Iphone 14 pro',
-        price: 25000,
-        rating: 4,
-        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-      },
-      {
-        id: 3,
-        name: 'Xiaomi 11t',
-        price: 22000,
-        rating: 5,
-        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-      },
-      {
-        id: 4,
-        name: 'HTC Ultra',
-        price: 24000,
-        rating: 4,
-        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-      },
-      {
-        id: 5,
-        name: 'Sony Razor',
-        price: 27000,
-        rating: 3,
-        img: 'https://www.purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png',
-      },
-    ];
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
     this._selectedType = {} as Type;
     this._selectedBrand = {} as Brand;
     makeAutoObservable(this);

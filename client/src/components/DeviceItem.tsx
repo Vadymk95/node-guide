@@ -11,7 +11,7 @@ export const DeviceItem: FC<{device: Device}> = ({ device }) => {
   return (
     <Col className="mb-4" md={3} onClick={handleNavigate}>
       <Card style={{ width: 200, cursor: 'pointer' }} border="grey">
-        <Image width={200} height={200} src={device.img} />
+        <Image width={200} height={200} src={import.meta.env.VITE_API_URL + device.img} />
         <div className="p-3">
           <div className="d-flex text-black-50 justify-content-between align-items-center mt-2">
             <div>Samsung</div>
